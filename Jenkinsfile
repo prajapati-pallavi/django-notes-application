@@ -41,13 +41,12 @@ pipeline{
           docker compose up -d --build
           '''
       }
-    }
-
+    }    
+  }
   post{
     always{
       sh 'docker logout || true'
     }
   }
-    
-  }
+
 }
