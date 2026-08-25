@@ -22,16 +22,18 @@ pipeline{
     }
     stage('Push Image to Docker Hub'){
       steps{
-        withCredentials( [usernamePassword (
-          credentialsId: 'dockerHubCreds',
-          usernameVariable: 'DH_USER',
-          passwordVariable: 'DH_PASS'
-        )])
-
+        script{
+          withCredentials( [usernamePassword (
+            credentialsId: 'dockerHubCreds',
+            usernameVariable: 'DH_USER',
+            passwordVariable: 'DH_PASS'
+          )])
+          
         sh ''' 
         echo $DH_PASS | docker login -u $DH_USER --password-stdin
         docker push $DOCKERHUB_USER/$IMAGE_NAME:$IMAGE_TAG
         '''
+        }
       }
     }
     stage('Deploy your Application'){
