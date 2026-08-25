@@ -3,8 +3,8 @@ pipeline{
     label 'dev-server'
   }
   environment{
-    DOCKERHUB_USER = ''
-    IMAGE_NAME = ''
+    DOCKERHUB_USER = 'pallavinielit'
+    IMAGE_NAME = 'django-notes-app'
     IMAGE_TAG = 'latest'
   }
   stages{
